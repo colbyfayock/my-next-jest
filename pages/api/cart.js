@@ -1,9 +1,9 @@
+import { calculateSubtotalFromItems } from '../../lib/orders';
+
 export default function handler(req, res) {
   const { discount, tax, items } = JSON.parse(req.body);
 
-  const subtotal = items.reduce((subtotal, { price, quantity }) => {
-    return subtotal + ( price * quantity );
-  }, 0);
+  const subtotal = calculateSubtotalFromItems(items);
 
   let total = subtotal;
 
